@@ -3,7 +3,7 @@
 // next
 import Image from "next/image";
 // react
-import { use, useState } from "react";
+import { useState } from "react";
 // assets
 import memyselfJPG from "../public/memyself.jpg";
 // components
@@ -11,10 +11,10 @@ import About from "./about";
 
 export default function Home() {
     const [isTestX, setIsTestX] = useState(false);
-    const [hideH1, setHideH1] = useState<any>(false);
+    const [hideH1, setHideH1] = useState(false);
     const [isTestY, setIsTestY] = useState(false);
 
-    const handleButtonClick = (type: string) => {
+    const handleButtonClick = () => {
         setIsTestX(!isTestX);
         setHideH1(true);
     };
