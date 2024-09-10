@@ -47,7 +47,7 @@ export default function Home() {
                 </div>
                 <button
                     className="col-start-1 col-end-2 row-start-2 row-end-3 grid place-content-center bg-black hover:text-[#DFB2F4]"
-                    onClick={() => handleButtonClick("about")}
+                    onClick={() => handleButtonClick()}
                 >
                     ABOUT
                 </button>
@@ -77,13 +77,13 @@ export default function Home() {
 
                 <button
                     className={`col-start-4 col-end-5 row-start-4 row-end-4 grid transform place-content-center bg-black transition-transform duration-500 ease-in-out hover:text-[#FAFF00] ${isTestX ? "translate-x-[-436px]" : ""}`}
-                    onClick={() => handleButtonClick("contact")}
+                    onClick={() => handleButtonClick()}
                 >
                     CONTACT
                 </button>
                 <button
                     className={`col-start-5 col-end-6 row-start-3 row-end-3 grid transform place-content-center bg-black transition-transform duration-500 ease-in-out hover:text-[#FF5E5B] ${isTestX ? "translate-x-[-581px]" : ""}`}
-                    onClick={() => handleButtonClick("portfolio")}
+                    onClick={() => handleButtonClick()}
                 >
                     PORTFOLIO
                 </button>
