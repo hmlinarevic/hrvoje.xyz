@@ -4,7 +4,7 @@ import memyselfJPG from "../public/memyself.jpg";
 export default function Home() {
     return (
         <div className="grid h-[90vh] w-screen place-content-center">
-            <section className="relative grid w-[720px] grid-cols-5 grid-rows-4 gap-3 border border-neutral-500 font-[family-name:var(--font-patua-one)]">
+            <section className="relative grid w-[720px] grid-cols-5 grid-rows-4 gap-2 border border-neutral-500 font-[family-name:var(--font-patua-one)]">
                 {/* borders */}
                 <div className="absolute top-[100%] row-start-1 row-end-2 w-full border-b border-neutral-500" />
                 <div className="absolute row-start-4 row-end-5 w-full border-t border-neutral-500" />
@@ -19,9 +19,9 @@ export default function Home() {
                         className="relative top-[5px]"
                     />
                 </div>
-                <div className="col-start-1 col-end-2 row-start-2 row-end-3 grid place-content-center bg-black">
+                <button className="col-start-1 col-end-2 row-start-2 row-end-3 grid place-content-center bg-black hover:text-[#DFB2F4]">
                     ABOUT
-                </div>
+                </button>
                 <div className="grid-place-content-center col-start-2 col-end-5 row-start-2 row-end-4 bg-black p-10">
                     <h1 className="text-3xl">
                         Hi! <br /> My name is{" "}
@@ -29,12 +29,12 @@ export default function Home() {
                         and I’m a Web developer.
                     </h1>
                 </div>
-                <div className="col-start-4 col-end-5 row-start-4 row-end-4 grid place-content-center bg-black">
+                <button className="col-start-4 col-end-5 row-start-4 row-end-4 grid place-content-center bg-black hover:text-[#FAFF00]">
                     CONTACT
-                </div>
-                <div className="col-start-5 col-end-6 row-start-3 row-end-3 grid place-content-center bg-black">
+                </button>
+                <button className="col-start-5 col-end-6 row-start-3 row-end-3 grid place-content-center bg-black hover:text-[#FF5E5B]">
                     PORTFOLIO
-                </div>
+                </button>
                 <span className="absolute bottom-[-20px] left-0 text-xs text-neutral-600">
                     hrvoje.xyz @ 2024
                 </span>
