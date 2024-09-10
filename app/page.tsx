@@ -6,59 +6,28 @@ import Image from "next/image";
 import { use, useState } from "react";
 // assets
 import memyselfJPG from "../public/memyself.jpg";
-// components 
+// components
 import About from "./about";
 
 export default function Home() {
-    const [isScaled, setIsScaled] = useState(false);
-    const [isExpanded, setIsExpanded] = useState(false);
     const [isTestX, setIsTestX] = useState(false);
-
-    const [activeButton, setActiveButton] = useState("");
-    const [content, setContent] = useState<any>();
     const [hideH1, setHideH1] = useState<any>(false);
-
     const [isTestY, setIsTestY] = useState(false);
-
-    // Toggle the scaled state on button click
-    const handleClick = () => {
-        // setIsScaled(!isScaled);
-        // setIsExpanded(!isExpanded);
-
-        setIsTestX(!isTestX);
-    };
 
     const handleButtonClick = (type: string) => {
         setIsTestX(!isTestX);
-        setActiveButton(type);
         setHideH1(true);
-
     };
 
     const handleTransitionEnd = () => {
         setIsTestY(true);
-
-        if (activeButton === "about") {
-            setContent("hello");
-        }
     };
 
     return (
         <div className="grid h-[90vh] w-screen place-content-center">
             {/* prettier-ignore */}
-            {/* <section
-                className={`
-                    border-10 relative grid w-[720px] grid-cols-5 grid-rows-4 gap-2 border
-                     border-neutral-500 font-[family-name:var(--font-patua-one)] 
-                     transition-all duration-500 ease-in-out transform`}
-            > */}
             <section
-                className={`border-10 relative grid w-[720px] transform grid-cols-5 grid-rows-[85px_85px_85px_85px] gap-2 border border-neutral-500 font-[family-name:var(--font-patua-one)] transition-all duration-500 ease-in-out ${
-                    isScaled
-                        ? // "-translate-x-[90%] scale-[40%]" : ""}
-                          "null"
-                        : ""
-                } `}
+                className={`border-10 relative grid w-[720px] transform grid-cols-5 grid-rows-[85px_85px_85px_85px] gap-2 border border-neutral-500 font-[family-name:var(--font-patua-one)] transition-all duration-500 ease-in-out`}
             >
                 {/* borders */}
                 <div className="absolute top-[100%] row-start-1 row-end-2 w-full border-b border-neutral-500" />
@@ -86,11 +55,6 @@ export default function Home() {
                 {isTestY ? (
                     <div className="absolute left-[145px] block h-full w-[calc(100%-145px)] bg-black p-10">
                         <About />
-                        {/* <h1 className="text-3xl">
-                            Hi! <br /> My name is{" "}
-                            <span className="text-[#7CDF64]">Hrvoje</span> <br />
-                            and I’m a Web developer.
-                        </h1> */}
                     </div>
                 ) : (
                     <div
@@ -99,13 +63,15 @@ export default function Home() {
                             setTimeout(() => handleTransitionEnd(), 200)
                         }
                     >
-                        {hideH1 ? null :<div className="overflow-hidden">
-                            <h1 className="text-3xl">
-                                Hi! <br /> My name is{" "}
-                                <span className="text-[#7CDF64]">Hrvoje</span> <br />
-                                and I’m a Web developer.
-                            </h1>
-                        </div>}
+                        {hideH1 ? null : (
+                            <div className="overflow-hidden">
+                                <h1 className="text-3xl">
+                                    Hi! <br /> My name is{" "}
+                                    <span className="text-[#7CDF64]">Hrvoje</span> <br />
+                                    and I’m a Web developer.
+                                </h1>
+                            </div>
+                        )}
                     </div>
                 )}
 
