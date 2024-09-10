@@ -8,7 +8,7 @@ import { useState } from "react";
 import memyselfJPG from "../public/memyself.jpg";
 
 export default function Home() {
-    const [isScaled, setIsScaled] = useState(false);
+    // const [isScaled, setIsScaled] = useState(false);
     const [isExpanded, setIsExpanded] = useState(false);
     const [isTestX, setIsTestX] = useState(false);
 
@@ -18,6 +18,14 @@ export default function Home() {
         setIsExpanded(!isExpanded)
         setIsTestX(!isTestX)
     }
+    // <section
+    // className={`
+    //     border-10 relative grid w-[720px] grid-cols-5 grid-rows-4 gap-2 border
+    //      border-neutral-500 font-[family-name:var(--font-patua-one)] 
+    //      transition-all duration-500 ease-in-out transform ${isScaled ? 
+    //         "-translate-x-[90%] scale-[40%]" : ""} 
+    // `}
+    // >
 
     return (
         <div className="grid h-[90vh] w-screen place-content-center">
@@ -26,9 +34,7 @@ export default function Home() {
                 className={`
                     border-10 relative grid w-[720px] grid-cols-5 grid-rows-4 gap-2 border
                      border-neutral-500 font-[family-name:var(--font-patua-one)] 
-                     transition-all duration-500 ease-in-out transform ${isScaled ? 
-                        "-translate-x-[90%] scale-[40%]" : ""} 
-                `}
+                     transition-all duration-500 ease-in-out transform`}
             >
                 {/* borders */}
                 <div className="absolute top-[100%] row-start-1 row-end-2 w-full border-b border-neutral-500" />
