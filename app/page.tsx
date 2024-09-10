@@ -3,38 +3,62 @@
 // next
 import Image from "next/image";
 // react
-import { useState } from "react";
+import { use, useState } from "react";
 // assets
 import memyselfJPG from "../public/memyself.jpg";
+// components 
+import About from "./about";
 
 export default function Home() {
-    // const [isScaled, setIsScaled] = useState(false);
+    const [isScaled, setIsScaled] = useState(false);
     const [isExpanded, setIsExpanded] = useState(false);
     const [isTestX, setIsTestX] = useState(false);
+
+    const [activeButton, setActiveButton] = useState("");
+    const [content, setContent] = useState<any>();
+    const [hideH1, setHideH1] = useState<any>(false);
+
+    const [isTestY, setIsTestY] = useState(false);
 
     // Toggle the scaled state on button click
     const handleClick = () => {
         // setIsScaled(!isScaled);
-        setIsExpanded(!isExpanded)
-        setIsTestX(!isTestX)
-    }
-    // <section
-    // className={`
-    //     border-10 relative grid w-[720px] grid-cols-5 grid-rows-4 gap-2 border
-    //      border-neutral-500 font-[family-name:var(--font-patua-one)] 
-    //      transition-all duration-500 ease-in-out transform ${isScaled ? 
-    //         "-translate-x-[90%] scale-[40%]" : ""} 
-    // `}
-    // >
+        // setIsExpanded(!isExpanded);
+
+        setIsTestX(!isTestX);
+    };
+
+    const handleButtonClick = (type: string) => {
+        setIsTestX(!isTestX);
+        setActiveButton(type);
+        setHideH1(true);
+
+    };
+
+    const handleTransitionEnd = () => {
+        setIsTestY(true);
+
+        if (activeButton === "about") {
+            setContent("hello");
+        }
+    };
 
     return (
         <div className="grid h-[90vh] w-screen place-content-center">
             {/* prettier-ignore */}
-            <section
+            {/* <section
                 className={`
                     border-10 relative grid w-[720px] grid-cols-5 grid-rows-4 gap-2 border
                      border-neutral-500 font-[family-name:var(--font-patua-one)] 
                      transition-all duration-500 ease-in-out transform`}
+            > */}
+            <section
+                className={`border-10 relative grid w-[720px] transform grid-cols-5 grid-rows-[85px_85px_85px_85px] gap-2 border border-neutral-500 font-[family-name:var(--font-patua-one)] transition-all duration-500 ease-in-out ${
+                    isScaled
+                        ? // "-translate-x-[90%] scale-[40%]" : ""}
+                          "null"
+                        : ""
+                } `}
             >
                 {/* borders */}
                 <div className="absolute top-[100%] row-start-1 row-end-2 w-full border-b border-neutral-500" />
@@ -43,34 +67,58 @@ export default function Home() {
                 <div className="absolute col-start-5 col-end-6 row-start-1 -row-end-1 h-full w-[1px] border-r border-neutral-500" />
 
                 {/* content */}
-                <div className="col-start-2 col-end-3 bg-black">
+                <div
+                    className={`col-start-2 col-end-3 transform bg-black transition-transform duration-500 ease-in-out ${isTestX ? "translate-x-[-145px]" : ""}`}
+                >
                     <Image
                         src={memyselfJPG}
                         alt="my face"
-                        className="relative top-[5px]"
+                        className="block h-[99%] object-bottom"
                     />
                 </div>
                 <button
                     className="col-start-1 col-end-2 row-start-2 row-end-3 grid place-content-center bg-black hover:text-[#DFB2F4]"
-                    onClick={handleClick}
+                    onClick={() => handleButtonClick("about")}
                 >
                     ABOUT
                 </button>
-                <div className={`bg-black p-10 transition-all duration-500 ease-in-out col-start-2 col-end-5 row-start-2 row-end-4 ${isExpanded ? "scale-x-[168%] scale-y-[204%]" : ""}`}> 
-                    {isExpanded && <span onClick={handleClick} className="absolute top-[.5rem] right-[1rem]">X</span>}
 
-                    <div style={{ opacity: isTestX ? "0" : "" }}>
-                        <h1 className="text-3xl">
+                {isTestY ? (
+                    <div className="absolute left-[145px] block h-full w-[calc(100%-145px)] bg-black p-10">
+                        <About />
+                        {/* <h1 className="text-3xl">
                             Hi! <br /> My name is{" "}
                             <span className="text-[#7CDF64]">Hrvoje</span> <br />
                             and I’m a Web developer.
-                        </h1>
+                        </h1> */}
                     </div>
-                </div>
-                <button className="col-start-4 col-end-5 row-start-4 row-end-4 grid place-content-center bg-black hover:text-[#FAFF00]">
+                ) : (
+                    <div
+                        className={`col-start-2 col-end-5 row-start-2 row-end-4 w-full bg-black p-10 transition-all duration-300 ease-in-out ${isTestX ? "w-[134%] scale-y-[2.045]" : ""}`}
+                        onTransitionEnd={() =>
+                            setTimeout(() => handleTransitionEnd(), 200)
+                        }
+                    >
+                        {hideH1 ? null :<div className="overflow-hidden">
+                            <h1 className="text-3xl">
+                                Hi! <br /> My name is{" "}
+                                <span className="text-[#7CDF64]">Hrvoje</span> <br />
+                                and I’m a Web developer.
+                            </h1>
+                        </div>}
+                    </div>
+                )}
+
+                <button
+                    className={`col-start-4 col-end-5 row-start-4 row-end-4 grid transform place-content-center bg-black transition-transform duration-500 ease-in-out hover:text-[#FAFF00] ${isTestX ? "translate-x-[-436px]" : ""}`}
+                    onClick={() => handleButtonClick("contact")}
+                >
                     CONTACT
                 </button>
-                <button className="col-start-5 col-end-6 row-start-3 row-end-3 grid place-content-center bg-black hover:text-[#FF5E5B]">
+                <button
+                    className={`col-start-5 col-end-6 row-start-3 row-end-3 grid transform place-content-center bg-black transition-transform duration-500 ease-in-out hover:text-[#FF5E5B] ${isTestX ? "translate-x-[-581px]" : ""}`}
+                    onClick={() => handleButtonClick("portfolio")}
+                >
                     PORTFOLIO
                 </button>
                 <span className="absolute bottom-[-20px] left-0 text-xs text-neutral-600">
