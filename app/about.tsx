@@ -13,16 +13,15 @@ export default function About() {
         >
             <p>This was cool, right?</p>
             <p className="mt-3">
-                Before, I never considered working in tech. I was managing the family
-                ranch, running the business, and riding horses. But after becoming friends
-                with two programmers and seeing them work on a computer, I immediately
-                knew my life was about to take a dramatic turn. Fast forward to today, and
-                I couldn’t be happier than when I’m writing code.
+                Lorem ipsum dolor, sit amet consectetur adipisicing elit. Aliquid corporis
+                qui rem sequi, laudantium eos earum adipisci ducimus eveniet sunt error
+                maiores, cupiditate explicabo soluta, ipsa voluptate quia eligendi
+                quisquam eum atque nostrum provident alias excepturi nihil. Aliquam,
+                numquam asperiores.
             </p>
             <p className="mt-3">
-                You’ll find me super passionate about the web and how we interact with it.
-                I specialize in JavaScript and its ecosystems, working with frameworks
-                like React and Next.js.
+                Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ullam labore aut
+                eligendi esse animi et, tempore necessitatibus vitae? Minus, iste.
             </p>
         </section>
     );
