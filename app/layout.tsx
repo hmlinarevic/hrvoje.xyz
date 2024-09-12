@@ -1,11 +1,28 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
+import { Titillium_Web, Righteous } from "next/font/google";
 import "./globals.css";
 
 const patuaOne = localFont({
     src: "./fonts/PatuaOne.ttf",
     variable: "--font-patua-one",
     weight: "400",
+});
+
+const righteous = Righteous({
+    subsets: ["latin"],
+    display: "swap",
+    variable: "--font-righteous",
+    weight: "400",
+    preload: false,
+});
+
+const titilliumWeb = Titillium_Web({
+    subsets: ["latin"],
+    display: "swap",
+    variable: "--font-titilliumWeb",
+    weight: ["400"],
+    preload: false,
 });
 
 export const metadata: Metadata = {
@@ -20,7 +37,11 @@ export default function RootLayout({
 }>) {
     return (
         <html lang="en">
-            <body className={`${patuaOne.variable}`}>{children}</body>
+            <body
+                className={`${patuaOne.variable} ${titilliumWeb.variable} ${righteous.variable} `}
+            >
+                {children}
+            </body>
         </html>
     );
 }

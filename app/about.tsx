@@ -6,10 +6,14 @@ export default function About() {
 
     useEffect(() => {
         setTimeout(() => setIsShow(true), 50);
+
+        return () => {
+            console.log('unmounted...')
+        }
     }, []);
     return (
         <section
-            className={`font-sans opacity-0 transition-all duration-300 ease-linear ${isShow ? "opacity-100" : ""}`}
+            className={`font-sans opacity-100 transition-all duration-300 ease-linear ${isShow ? "opacity-100" : ""}`}
         >
             <p>This was cool, right?</p>
             <p className="mt-3">

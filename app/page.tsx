@@ -3,34 +3,57 @@
 // next
 import Image from "next/image";
 // react
-import { useState } from "react";
+import { useEffect, useState } from "react";
 // assets
 import memyselfJPG from "../public/memyself.jpg";
 // components
 import About from "./about";
+import Portfolio from "./portfolio";
+import Contact from "./contact";
 
 export default function Home() {
     const [isTestX, setIsTestX] = useState(false);
-
     const [activeButton, setActiveButton] = useState("");
     const [content, setContent] = useState("");
     const [hideH1, setHideH1] = useState(false);
+    const [isTestZ, setIsTestZ] = useState(false);
 
-    const [isTestY, setIsTestY] = useState(false);
+    const [isDisplayAssembled, setIsDisplayAssembled] = useState(false);
+
+    const handleFaceClick = () => {
+        setIsDisplayAssembled(false);
+        setIsTestZ(false);
+        setTimeout(() => {
+            setIsTestX(false);
+        }, 100);
+        setTimeout(() => {
+            setHideH1(false);
+        }, 500);
+    };
 
     const handleButtonClick = (type: string) => {
-        setIsTestX(!isTestX);
-        setActiveButton(type);
-        setHideH1(true);
+        if (isDisplayAssembled) {
+            setContent(type);
+        } else {
+            setIsTestX(!isTestX);
+            setActiveButton(type);
+            setHideH1(true);
+        }
+
+        setIsDisplayAssembled(true);
     };
 
     const handleTransitionEnd = () => {
-        setIsTestY(true);
+        if (isDisplayAssembled) {
+            setIsTestZ(true);
 
-        if (activeButton === "about") {
-            setContent("about");
+            if (activeButton === "about") {
+                setContent("about");
+            }
         }
     };
+
+    useEffect(() => {});
 
     return (
         <div className="grid h-[90vh] w-screen place-content-center">
@@ -52,7 +75,8 @@ export default function Home() {
 
                 {/* content */}
                 <div
-                    className={`col-start-2 col-end-3 transform bg-black transition-transform duration-500 ease-in-out ${isTestX ? "translate-x-[-145px]" : ""}`}
+                    className={`col-start-2 col-end-3 transform cursor-pointer bg-black transition-transform duration-500 ease-in-out ${isTestX ? "translate-x-[-145px]" : ""}`}
+                    onClick={handleFaceClick}
                 >
                     <Image
                         src={memyselfJPG}
@@ -61,34 +85,34 @@ export default function Home() {
                     />
                 </div>
                 <button
-                    className="col-start-1 col-end-2 row-start-2 row-end-3 grid place-content-center bg-black hover:text-[#DFB2F4]"
+                    className="col-start-1 col-end-2 row-start-2 row-end-3 grid place-content-center bg-black hover:text-[#51E5FF]"
                     onClick={() => handleButtonClick("about")}
                 >
                     ABOUT
                 </button>
 
-                {isTestY ? (
-                    <div className="absolute left-[145px] block h-full w-[calc(100%-145px)] bg-black p-10">
-                        {content === "about" ? <About /> : null}
-                    </div>
-                ) : (
-                    <div
-                        className={`col-start-2 col-end-5 row-start-2 row-end-4 bg-black p-10 transition-all duration-300 ease-in-out ${isTestX ? "w-[134%] scale-y-[2.045]" : "w-full"}`}
-                        onTransitionEnd={() =>
-                            setTimeout(() => handleTransitionEnd(), 200)
-                        }
-                    >
-                        {hideH1 ? null : (
-                            <div className="overflow-hidden">
-                                <h1 className="text-3xl">
-                                    Hi! <br /> My name is{" "}
-                                    <span className="text-[#7CDF64]">Hrvoje</span> <br />
-                                    and I’m a Web developer.
-                                </h1>
-                            </div>
-                        )}
-                    </div>
-                )}
+                <div
+                    className="absolute col-start-2 h-full w-full bg-black p-10 overflow-y-scroll"
+                    style={{ opacity: isTestZ ? 100 : 0, zIndex: isTestZ ? 100 : 0 }}
+                >
+                    {content === "about" ? <About /> : null}
+                    {content === "contact" ? <Contact /> : null}
+                    {content === "portfolio" ? <Portfolio /> : null}
+                </div>
+                <div
+                    className={`relative z-10 col-start-2 col-end-5 row-start-2 row-end-4 bg-black p-10 transition-all duration-300 ease-in-out ${isTestX ? "w-[134%] scale-y-[2.045]" : "w-full scale-y-100"}`}
+                    onTransitionEnd={() => setTimeout(() => handleTransitionEnd(), 200)}
+                >
+                    {hideH1 ? null : (
+                        <div className="overflow-hidden">
+                            <h1 className="text-3xl">
+                                Hi! <br /> My name is{" "}
+                                <span className="text-[#7CDF64]">Hrvoje</span> <br />
+                                and I’m a Web developer.
+                            </h1>
+                        </div>
+                    )}
+                </div>
 
                 <button
                     className={`col-start-4 col-end-5 row-start-4 row-end-4 grid transform place-content-center bg-black transition-transform duration-500 ease-in-out hover:text-[#FAFF00] ${isTestX ? "translate-x-[-436px]" : ""}`}
@@ -97,7 +121,7 @@ export default function Home() {
                     CONTACT
                 </button>
                 <button
-                    className={`col-start-5 col-end-6 row-start-3 row-end-3 grid transform place-content-center bg-black transition-transform duration-500 ease-in-out hover:text-[#FF5E5B] ${isTestX ? "translate-x-[-581px]" : ""}`}
+                    className={`col-start-5 col-end-6 row-start-3 row-end-3 grid transform place-content-center bg-black transition-transform duration-500 ease-in-out hover:text-[#F21B3F] ${isTestX ? "translate-x-[-581px]" : ""}`}
                     onClick={() => handleButtonClick("portfolio")}
                 >
                     PORTFOLIO
