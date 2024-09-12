@@ -1,7 +1,7 @@
 export default function Contact() {
     return (
         <div className="font-sans">
-            <p>Hey! Let's chat!</p>
+            <p>Hey! Let&apos;s chat!</p>
             <p className="mt-2">
                 If you want to chat about web development or engage my development
                 services, you can use the email{" "} &quot;
@@ -16,7 +16,6 @@ export default function Contact() {
             >
                 Github
             </a>
-            <p className="mt-5">If you have a Upwork profile and looking for talent </p>
         </div>
     );
 }
